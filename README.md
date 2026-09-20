@@ -1,6 +1,8 @@
-# WordStylesIndexor
+# WordStylesIndexor2
 
 Script pour l'extraction de données par les styles dans des documents Word
+
+Ce projet est une réécriture en Python de l'outil original en VBS, disponible sur [github.com/arnauddalayer/WordStylesIndexor](https://github.com/arnauddalayer/WordStylesIndexor). La version Python fonctionne à la fois sous Windows et macOS/Linux.
 
 # Présentation
 
@@ -13,8 +15,6 @@ Par défaut, celui-ci va extraire les informations possédant les styles « Titr
 * Les contenus sont extraits vers un fichier CSV (`out/rapport.csv`) qui contient : un identifiant, le nom du fichier, le nom du style et le contenu du paragraphe.
 * Les styles recherchés peuvent être des styles de paragraphe (ex. « Titre 1 ») ou des styles de caractère appliqués sur une partie du texte (ex. un style appliqué au contenu d'un champ de formulaire ou d'une section répétitive) ; les deux types sont détectés, y compris lorsqu'ils sont imbriqués dans un tableau ou un contrôle de contenu.
 * Le fichier de styles, ainsi que les dossiers d'entrée/sortie, peuvent être surchargés via des arguments en ligne de commande (`--styles-file`, `--input-dir`, `--output-dir`, `--verbose`), ce qui permet notamment d'exécuter les tests unitaires du dossier `tests/`.
-
-Ce projet est une réécriture en Python de l'outil original en VBS, disponible sur [github.com/arnauddalayer/WordStylesIndexor](https://github.com/arnauddalayer/WordStylesIndexor). La version Python fonctionne à la fois sous Windows et macOS/Linux.
 
 # Structure du projet
 
