@@ -42,7 +42,7 @@ tests/
 
 * [Installez Python 3](https://www.python.org/downloads/) si ce n'est pas déjà fait (ou un environnement Miniforge/Conda, qui est automatiquement détecté).
 * Sous Windows, double-cliquez sur `W_install_requirements.bat`.
-* Sous macOS/Linux, rendez le fichier exécutable puis lancez-le : `chmod +x M_install_requirements.command` et double-cliquez dessus (ou exécutez-le dans un terminal).
+* Sous macOS/Linux, rendez les fichiers `.command` exécutables avec `chmod +x *.command` et double-cliquez ensuite sur `M_install_requirements.command` (ou exécutez-le dans un terminal).
 
 Ces scripts créent un environnement virtuel (`.venv`) et y installent les dépendances listées dans `requirements.txt`.
 

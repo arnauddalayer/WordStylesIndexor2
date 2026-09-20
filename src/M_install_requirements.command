@@ -1,13 +1,21 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 echo "======================================================"
 echo "  Installation des dependances pour WordStyleIndexor"
 echo "======================================================"
 
+# Vérifier que nous nous trouvons dans le répertoire de projet
+if [ ! -f "requirements.txt" ]; then
+    echo "[ERREUR] Le fichier requirements.txt n'est pas trouvé dans le répertoire actuel."
+    echo "Veuillez exécuter le script à partir du répertoire de votre projet."
+    exit 1
+fi
+
 # Détection et activation de Miniforge/Anaconda si présent
 if [ -d "/opt/homebrew/Caskroom/miniforge/base" ]; then
     source "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    echo "[INFO] Miniforge detecte dans /opt/homebrew/Caskroom/miniforge/."
+    echo "[INFO] Miniforge détecté dans /opt/homebrew/Caskroom/miniforge/."
 fi
 
 # Définition de la commande python
@@ -16,7 +24,7 @@ PYTHON_EXE="python3"
 # Vérification de la présence de Python
 $PYTHON_EXE --version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "[ERREUR] Python n'est pas detecte."
+    echo "[ERREUR] Python n'est pas détecté."
     echo "Veuillez installer Python ou Miniforge."
     exit 1
 fi
