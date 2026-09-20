@@ -1,0 +1,4 @@
+# Liste des styles Word à extraire (un style par ligne).
+# Les lignes vides ou commençant par # sont ignorées.
+Titre 1
+Titre 2
