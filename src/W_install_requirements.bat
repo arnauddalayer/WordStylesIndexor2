@@ -5,13 +5,22 @@ echo ======================================================
 echo   Installation des dependances pour WordStyleIndexor
 echo ======================================================
 
-:: Active Miniforge lorsqu'il est installe dans l'emplacement par defaut.
-set "MINIFORGE_ROOT=%LOCALAPPDATA%\miniforge3"
-if exist "%MINIFORGE_ROOT%\Scripts\activate.bat" (
-    echo [INFO] Activation de Miniforge.
-    call "%MINIFORGE_ROOT%\Scripts\activate.bat" "%MINIFORGE_ROOT%"
+:: Détecte Miniforge dans les deux emplacements possibles
+set "MINIFORGE_USER=%LOCALAPPDATA%\miniforge3"
+set "MINIFORGE_SYSTEM=%ProgramData%\miniforge3"
+
+:: Vérifie d'abord le répertoire d'utilisateur
+if exist "%MINIFORGE_USER%\Scripts\activate.bat" (
+    echo [INFO] Detecte Miniforge dans %MINIFORGE_USER%
+    call "%MINIFORGE_USER%\Scripts\activate.bat" "%MINIFORGE_USER%"
 ) else (
-    echo [INFO] Miniforge non detecte, utilisation de Python standard.
+    :: Si pas trouvé, vérifie le répertoire system
+    if exist "%MINIFORGE_SYSTEM%\Scripts\activate.bat" (
+        echo [INFO] Detecte Miniforge dans %MINIFORGE_SYSTEM%
+        call "%MINIFORGE_SYSTEM%\Scripts\activate.bat" "%MINIFORGE_SYSTEM%"
+    ) else (
+        echo [INFO] Miniforge non detecte, utilisation de Python standard.
+    )
 )
 
 :: conda et mamba sont des gestionnaires de paquets; le venv doit etre cree par Python.
