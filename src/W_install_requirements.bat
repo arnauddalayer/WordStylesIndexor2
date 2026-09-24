@@ -5,22 +5,22 @@ echo ======================================================
 echo   Installation des dependances pour WordStyleIndexor
 echo ======================================================
 
-:: Détecte Miniforge dans les deux emplacements possibles
+:: Détecte Miniforge (Tentatives multiples pour capturer les installations usuelles)
 set "MINIFORGE_USER=%LOCALAPPDATA%\miniforge3"
+set "MINIFORGE_USER_HOME=%USERPROFILE%\miniforge3"
 set "MINIFORGE_SYSTEM=%ProgramData%\miniforge3"
 
-:: Vérifie d'abord le répertoire d'utilisateur
 if exist "%MINIFORGE_USER%\Scripts\activate.bat" (
     echo [INFO] Detecte Miniforge dans %MINIFORGE_USER%
     call "%MINIFORGE_USER%\Scripts\activate.bat" "%MINIFORGE_USER%"
+) else if exist "%MINIFORGE_USER_HOME%\Scripts\activate.bat" (
+    echo [INFO] Detecte Miniforge dans %MINIFORGE_USER_HOME%
+    call "%MINIFORGE_USER_HOME%\Scripts\activate.bat" "%MINIFORGE_USER_HOME%"
+) else if exist "%MINIFORGE_SYSTEM%\Scripts\activate.bat" (
+    echo [INFO] Detecte Miniforge dans %MINIFORGE_SYSTEM%
+    call "%MINIFORGE_SYSTEM%\Scripts\activate.bat" "%MINIFORGE_SYSTEM%"
 ) else (
-    :: Si pas trouvé, vérifie le répertoire system
-    if exist "%MINIFORGE_SYSTEM%\Scripts\activate.bat" (
-        echo [INFO] Detecte Miniforge dans %MINIFORGE_SYSTEM%
-        call "%MINIFORGE_SYSTEM%\Scripts\activate.bat" "%MINIFORGE_SYSTEM%"
-    ) else (
-        echo [INFO] Miniforge non detecte, utilisation de Python standard.
-    )
+    echo [INFO] Miniforge non detecte, utilisation de Python standard.
 )
 
 :: conda et mamba sont des gestionnaires de paquets; le venv doit etre cree par Python.
