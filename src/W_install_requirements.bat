@@ -1,9 +1,24 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Correction pour l'exécution en tant qu'administrateur
+set "SCRIPT_DIR=%~dp0"
+pushd "%SCRIPT_DIR%"
+
 echo ======================================================
 echo   Installation des dependances pour WordStyleIndexor
 echo ======================================================
+
+echo [INFO] Dossier actuel : %CD%
+
+:: Vérification si le dossier est un dossier temporaire
+echo %CD% | findstr /I "Temp" >nul
+if %errorlevel% == 0 (
+    echo [ERREUR] Il semble que vous executez le script depuis un dossier temporaire.
+    echo Veuillez decompresser le fichier ZIP, ou deplacer le dossier de WordStyleIndexor2 avant de lancer l'installation.
+    pause
+    exit /b
+)
 
 :: Détecte Miniforge (Tentatives multiples pour capturer les installations usuelles)
 set "MINIFORGE_USER=%LOCALAPPDATA%\miniforge3"
