@@ -155,7 +155,8 @@ def extraireStylesDesDocuments(stylesAIndexer, dossierEntree, dossierSortie, ord
 
     if formatSortie == "csv":
         with open(cheminSortie, 'w', encoding='utf-8-sig', newline='') as fichierCsv:
-            rapport = csv.writer(fichierCsv)
+            # Toutes les valeurs texte sont entre guillemets (les guillemets internes sont doublés, selon la norme CSV)
+            rapport = csv.writer(fichierCsv, quoting=csv.QUOTE_NONNUMERIC)
             rapport.writerow(["id", "Fichier", "Style", "contenu"])
             for entree in entrees:
                 rapport.writerow([entree['id'], entree['Fichier'], entree['Style'], entree['contenu']])

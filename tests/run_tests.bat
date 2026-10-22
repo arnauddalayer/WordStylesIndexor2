@@ -20,10 +20,35 @@ call "%SRC_DIR%\.venv\Scripts\activate"
 set /a TOTAL=0
 set /a ECHECS=0
 
+rem Choix du test : numero (nom du sous-dossier) passe en argument, ou saisi ici. Vide = tous les tests.
+set "CHOIX=%~1"
+if not defined CHOIX (
+    echo Tests disponibles :
+    for /d %%D in ("%SCRIPT_DIR%*") do (
+        if exist "%%D\stylesAIndexer.txt" echo   - %%~nxD
+    )
+    set /p "CHOIX=Numero du test a executer (Entree = tous) : "
+)
+if defined CHOIX (
+    rem Retire les guillemets et les espaces autour de la saisie
+    set "CHOIX_BRUT=!CHOIX:"=!"
+    set "CHOIX="
+    for /f "tokens=1" %%A in ("!CHOIX_BRUT!") do set "CHOIX=%%A"
+)
+if defined CHOIX (
+    if not exist "%SCRIPT_DIR%!CHOIX!\stylesAIndexer.txt" (
+        echo [ERREUR] Le test "!CHOIX!" n'existe pas.
+        pause
+        exit /b 1
+    )
+)
+
 rem Parcourt chaque sous-dossier de tests\ contenant un stylesAIndexer.txt
 rem (permet d'ajouter de nouveaux TU sans modifier ce script)
 for /d %%D in ("%SCRIPT_DIR%*") do (
-    if exist "%%D\stylesAIndexer.txt" (
+    set "EXECUTER=1"
+    if defined CHOIX if /I not "%%~nxD"=="!CHOIX!" set "EXECUTER=0"
+    if exist "%%D\stylesAIndexer.txt" if "!EXECUTER!"=="1" (
         set /a TOTAL+=1
         echo ======================================================
         echo   Test unitaire : %%~nxD

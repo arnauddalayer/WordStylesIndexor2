@@ -1,10 +1,14 @@
 # Changelog
 
+## 2026-10-21
+
+- CSV : toutes les valeurs texte sont maintenant entre guillemets, de façon uniforme (auparavant, seules les valeurs contenant une virgule, un guillemet ou un saut de ligne l'étaient). Le contenu lu par un tableur ou une bibliothèque CSV est identique.
+- Ajout de la structure de tests unitaires (`tests/`, `tests/run_tests.bat`) et d'un test modèle (`tests/n/`), réutilisables pour d'autres « projets » : chaque sous-dossier est exécuté dans les deux formats et les deux ordres. `run_tests.bat` permet d'exécuter tous les tests (Entrée) ou un seul (numéro saisi ou passé en argument).
+
 ## 2026-10-20
 
 - Ajout d'une sortie au format JSON (`--format json`, en plus du CSV) ; chaque entrée contient les mêmes champs que le CSV : `id`, `Fichier`, `Style`, `contenu`.
 - Ajout de l'argument `--ordre` (`style` ou `document`) pour choisir l'ordre des entrées dans le rapport.
-- Ajout de la structure de tests unitaires (`tests/`, `tests/run_tests.bat`) et d'un test modèle (`tests/n/`), réutilisables pour d'autres « projets » : chaque sous-dossier est exécuté dans les deux formats et les deux ordres.
 - Francisation du script : fonctions, variables et constantes en français (`parcourirRuns` devient `parcourirSegments`), et arguments en ligne de commande renommés : `--styles-file` → `--fichier-styles`, `--input-dir` → `--dossier-entree`, `--output-dir` → `--dossier-sortie` ; `--verbose` est conservé (aide `-h` / `--aide` en français).
 - Les fichiers du dossier d'entrée sont traités en ordre alphabétique, pour un rapport reproductible.
 - Le dossier de sortie n'est plus créé lorsque le dossier d'entrée n'existe pas.

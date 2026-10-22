@@ -79,12 +79,12 @@ Ces scripts :
 
 Dans les deux formats, chaque entrée contient les champs `id`, `Fichier`, `Style` et `contenu`.
 
-* **CSV** (`rapport.csv`, défaut) : encodage `utf-8-sig`, pour une ouverture directe dans Excel.
-* **JSON** (`rapport.json`) : encodage `utf-8`, tableau d'objets.
+* **CSV** (`rapport.csv`, défaut) : encodage `utf-8-sig`, pour une ouverture directe dans Excel. Toutes les valeurs texte sont entre guillemets (`"`) ; un guillemet dans le texte est doublé (`""`), selon la norme CSV, et les virgules ou sauts de ligne du texte sont conservés.
+* **JSON** (`rapport.json`) : encodage `utf-8`, tableau d'objets ; les guillemets et sauts de ligne du texte sont échappés (`\"`, `\n`).
 
 ## Tests unitaires
 
-Les tests permettent de vérifier le comportement du script sur vos propres documents. Pour en créer un, copiez `tests/n/` sous un nouveau nom, remplacez son contenu (`docs/` et `stylesAIndexer.txt`), puis exécutez `tests\run_tests.bat` (après avoir installé les dépendances). Chaque test est exécuté dans les deux formats et les deux ordres.
+Les tests permettent de vérifier le comportement du script sur vos propres documents. Pour en créer un, copiez `tests/n/` sous un nouveau nom, remplacez son contenu (`docs/` et `stylesAIndexer.txt`), puis exécutez `tests\run_tests.bat` (après avoir installé les dépendances). Le script demande le numéro du test à exécuter ; appuyez sur Entrée pour les exécuter tous. Le numéro peut aussi être passé en argument (`tests\run_tests.bat 3`). Chaque test est exécuté dans les deux formats et les deux ordres.
 
 # Limitations
 
