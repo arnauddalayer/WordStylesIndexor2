@@ -41,6 +41,21 @@ def parcourirSegments(paragraphe):
         yield Run(elementSegment, paragraphe)
 
 
+def extraireTexteParagraphe(paragraphe):
+    def parcourirTexte(element):
+        for enfant in element:
+            if enfant.tag == qn('w:r'):
+                yield enfant.text
+            elif enfant.tag == qn('w:hyperlink'):
+                yield from parcourirTexte(enfant)
+            elif enfant.tag == qn('w:sdt'):
+                contenu = enfant.find(qn('w:sdtContent'))
+                if contenu is not None:
+                    yield from parcourirTexte(contenu)
+
+    return ''.join(parcourirTexte(paragraphe._p))
+
+
 def lireStylesAIndexer(cheminFichier):
     # Un style par ligne ; les lignes vides ou commençant par # sont ignorées
     if not os.path.exists(cheminFichier):
@@ -108,7 +123,7 @@ def extraireStylesDesDocuments(stylesAIndexer, dossierEntree, dossierSortie, ord
 
             # 1. Vérifier si le paragraphe lui-même a un style cible
             if styleActuelNomNormalise in stylesAExtraireNomNormalise:
-                extraction = paragraphe.text.strip()
+                extraction = extraireTexteParagraphe(paragraphe).strip()
 
             # 2. Sinon, vérifier les styles de caractères
             if not extraction:

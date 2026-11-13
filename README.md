@@ -14,6 +14,7 @@ Plus précisément :
 Par défaut, celui-ci va extraire les informations possédant les styles « Titre 1 » et « Titre 2 » (les équivalents anglais « Heading 1 »/« Heading 2 » sont également reconnus).
 * Les contenus sont extraits vers un fichier de sortie (au choix, un fichier CSV ou un fichier JSON) qui contient : un identifiant, le nom du fichier, le nom du style et le contenu du paragraphe.
 * Les styles recherchés peuvent être des styles de paragraphe (ex. « Titre 1 ») ou des styles de caractère appliqués sur une partie du texte (ex. un style appliqué au contenu d'un champ de formulaire ou d'une section répétitive) ; les deux types sont détectés, y compris lorsqu'ils sont imbriqués dans un tableau ou un contrôle de contenu.
+* Pour un style de paragraphe recherché, tout le texte du paragraphe est extrait, y compris celui des contrôles de contenu, sans distinguer les libellés des réponses. Pour un style de caractère recherché, seuls les passages portant ce style sont extraits.
 * Le fichier de styles, ainsi que les dossiers d'entrée/sortie, peuvent être surchargés via des arguments en ligne de commande (`--fichier-styles`, `--dossier-entree`, `--dossier-sortie`, `--verbose`, `--ordre`, `--format`). Par exemple, l'argument `--ordre` permet de choisir entre un tri par style (`style`) ou par ordre d'apparition dans le document (`document`). `--aide` affiche la liste complète.
 
 # Structure du projet

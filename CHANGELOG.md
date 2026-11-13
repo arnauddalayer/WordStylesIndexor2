@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-13
+
+- Extraction du texte des contrôles de contenu imbriqués dans un paragraphe portant un style recherché, en conservant également le texte hors de ces contrôles.
+
 ## 2026-10-21
 
 - CSV : toutes les valeurs texte sont maintenant entre guillemets, de façon uniforme (auparavant, seules les valeurs contenant une virgule, un guillemet ou un saut de ligne l'étaient). Le contenu lu par un tableur ou une bibliothèque CSV est identique.
